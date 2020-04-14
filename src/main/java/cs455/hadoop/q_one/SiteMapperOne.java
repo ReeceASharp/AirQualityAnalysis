@@ -11,7 +11,7 @@ import java.util.StringTokenizer;
 /**
  * Mapper: Reads line by line, split them into words. Emit <word, 1> pairs.
  */
-public class WordCountMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
+public class SiteMapperOne extends Mapper<LongWritable, Text, Text, IntWritable> {
 
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
