@@ -1,7 +1,6 @@
 package cs455.hadoop.q_one;
 
 import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
@@ -15,8 +14,8 @@ public class SiteMapperTwo extends Mapper<Text, Text, Text, IntWritable> {
     @Override
     protected void map(Text key, Text value, Context context) throws IOException, InterruptedException {
         //get string, and convert to array, we know the elements that we care about
-
-        String[] vals = value.toString().split(",");
+        //System.out.printf("MAPPER_TWO: key: %s, value: %s%n", key.toString(), value.toString());
+        String[] vals = key.toString().split(",");
 
         //Key = State, value = unique site
         context.write(new Text(vals[0]), new IntWritable(1));

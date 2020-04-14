@@ -13,6 +13,7 @@ import java.io.IOException;
 public class SiteReducerOne extends Reducer<Text, IntWritable, Text, IntWritable> {
     @Override
     protected void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
+        //System.out.println("REDUCER ONE");
         int count = 0;
         // calculate the total count
         for(IntWritable val : values){

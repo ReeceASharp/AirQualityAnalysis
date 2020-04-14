@@ -23,7 +23,7 @@ import java.io.IOException;
 public class SiteCountJob {
     public static void main(String[] args) {
         try {
-
+            //System.out.println("STARTING JOB");
             // create JobControl to daisychain jobs
             JobControl jobControl = new JobControl("jobChain");
 
