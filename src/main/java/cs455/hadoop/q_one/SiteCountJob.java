@@ -28,11 +28,13 @@ public class SiteCountJob {
             JobControl jobControl = new JobControl("jobChain");
 
             //*********************
-            //  ONE SECOND JOB
+            //  FIRST JOB
             //*********************
+            //counts up all of the
+
             Configuration conf1 = new Configuration();
             // Give the MapRed job a name. You'll see this name in the Yarn webapp.
-            Job job1 = Job.getInstance(conf1, "word count");
+            Job job1 = Job.getInstance(conf1, "State Site Counter");
 
             FileInputFormat.addInputPath(job1, new Path(args[0]));
             FileOutputFormat.setOutputPath(job1, new Path(args[1] + "/temp"));
@@ -58,8 +60,10 @@ public class SiteCountJob {
             controlledJob1.setJob(job1);
 
             //*********************
-            //  START SECOND JOB
+            //  SECOND JOB
             //*********************
+            //condenses the unique sites into their respective states (very little work done)
+
             Configuration conf2 = new Configuration();
 
             Job job2 = Job.getInstance(conf2);
