@@ -1,4 +1,4 @@
-package cs455.hadoop.q_two;
+package cs455.hadoop.q_four;
 
 import org.apache.hadoop.io.DoubleWritable;
 import org.apache.hadoop.io.Text;
@@ -6,10 +6,11 @@ import org.apache.hadoop.mapreduce.Reducer;
 
 import java.io.IOException;
 
-public class EWReducerOne extends Reducer<Text, DoubleWritable,Text, DoubleWritable >
-{
+public class YearSO2Reducer extends Reducer<Text, DoubleWritable,Text, DoubleWritable > {
+
     public void reduce(Text key,  Iterable<DoubleWritable> values, Context context) throws IOException,                                                       InterruptedException
     {
+        System.out.printf("REDUCING: text: %s %n", key);
         //initial values
         double totalCO2 = 0;
         int count = 0;

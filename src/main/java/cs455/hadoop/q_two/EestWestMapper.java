@@ -7,7 +7,7 @@ import org.apache.hadoop.mapreduce.Mapper;
 
 import java.io.IOException;
 
-public class EWMapperOne extends Mapper <LongWritable, Text, Text, DoubleWritable> {
+public class EestWestMapper extends Mapper <LongWritable, Text, Text, DoubleWritable> {
     public void map(LongWritable key, Text value, Context context) throws IOException,  InterruptedException {
         //Data was obtained from an epa states_and_countries.csv sheet obtained from their website
         //https://aqs.epa.gov/aqsweb/documents/codetables/states_and_counties.html

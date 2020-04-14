@@ -1,5 +1,8 @@
-package cs455.hadoop.q_two;
+package cs455.hadoop.q_four;
 
+import cs455.hadoop.q_three.DaySO2Job;
+import cs455.hadoop.q_three.DaySO2Mapper;
+import cs455.hadoop.q_three.DaySO2Reducer;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.DoubleWritable;
@@ -10,21 +13,20 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 import java.io.IOException;
 
-public class EWSO2Job {
-
+public class YearSO2Job {
     public static void main(String[] args) {
         try {
             Configuration conf = new Configuration();
             // Give the MapRed job a name. You'll see this name in the Yarn webapp.
-            Job job = Job.getInstance(conf, "EAST/WEST SO2 COMPARISON");
+            Job job = Job.getInstance(conf, "Year SO2 Comparison");
             // Current class.
-            job.setJarByClass(EWSO2Job.class);
+            job.setJarByClass(YearSO2Job.class);
             // Mapper
-            job.setMapperClass(EestWestMapper.class);
+            job.setMapperClass(YearSO2Mapper.class);
             // Combiner. We use the reducer as the combiner in this case.
             //job.setCombinerClass(EWReducerOne.class);
             // Reducer
-            job.setReducerClass(EastWestReducer.class);
+            job.setReducerClass(YearSO2Reducer.class);
             // Outputs from the Mapper.
             job.setMapOutputKeyClass(Text.class);
             job.setMapOutputValueClass(DoubleWritable.class);
@@ -47,6 +49,5 @@ public class EWSO2Job {
         } catch (ClassNotFoundException e) {
             System.err.println(e.getMessage());
         }
-
     }
 }
