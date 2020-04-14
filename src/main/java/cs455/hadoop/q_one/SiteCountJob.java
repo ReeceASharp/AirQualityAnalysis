@@ -12,10 +12,9 @@ import org.apache.hadoop.mapreduce.lib.jobcontrol.JobControl;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 import java.io.IOException;
-
-//Check Logs
 /*
-    /s/indianapolis/a/nobackup/cs455/chipmunk
+    /s/indianapolis/a/nobackup/cs455/chipmunk (DFS location)
+    /s/indianapolis/a/tmp/chipmunk/  (LOG LOCATION)
  */
 
 /**
@@ -74,8 +73,8 @@ public class SiteCountJob {
             job2.setCombinerClass(SiteReducerTwo.class);
             job2.setReducerClass(SiteReducerTwo.class);
 
-            job2.setOutputKeyClass(IntWritable.class);
-            job2.setOutputValueClass(Text.class);
+            job2.setOutputKeyClass(Text.class);
+            job2.setOutputValueClass(IntWritable.class);
             job2.setInputFormatClass(KeyValueTextInputFormat.class);
 
             ControlledJob controlledJob2 = new ControlledJob(conf2);
@@ -85,12 +84,14 @@ public class SiteCountJob {
             controlledJob2.addDependingJob(controlledJob1);
             // add the job to the job control
             jobControl.addJob(controlledJob2);
-            jobControl.run();
-            //Thread jobControlThread = new Thread(jobControl);
-            //jobControlThread.start();
 
+
+            Thread jobControlThread = new Thread(jobControl);
+            jobControlThread.start();
+
+            job1.waitForCompletion(true);
             // Block until the job is completed.
-            System.exit(job1.waitForCompletion(true) ? 0 : 1);
+            System.exit(job2.waitForCompletion(true) ? 0 : 1);
         } catch (IOException e) {
             System.err.println(e.getMessage());
         } catch (InterruptedException e) {
