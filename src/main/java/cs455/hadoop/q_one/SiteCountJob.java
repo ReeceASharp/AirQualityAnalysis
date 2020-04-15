@@ -7,6 +7,8 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.KeyValueTextInputFormat;
+import org.apache.hadoop.mapreduce.lib.input.MultipleInputs;
+import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.jobcontrol.ControlledJob;
 import org.apache.hadoop.mapreduce.lib.jobcontrol.JobControl;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
@@ -37,8 +39,10 @@ public class SiteCountJob {
             // Give the MapRed job a name. You'll see this name in the Yarn webapp.
             Job job1 = Job.getInstance(conf1, "State Site Counter");
 
-            FileInputFormat.addInputPath(job1, new Path(args[0]));
-            FileOutputFormat.setOutputPath(job1, new Path(args[1] + "/temp"));
+            MultipleInputs.addInputPath(job1, new Path(args[0]), TextInputFormat.class, SiteMapperOne.class);
+            MultipleInputs.addInputPath(job1, new Path(args[1]), TextInputFormat.class, SiteMapperOne.class);
+            //FileInputFormat.addInputPath(job1, new Path(args[0]));
+            FileOutputFormat.setOutputPath(job1, new Path(args[2] + "/temp"));
 
             // Current class.
             job1.setJarByClass(SiteCountJob.class);
@@ -69,10 +73,10 @@ public class SiteCountJob {
 
             Job job2 = Job.getInstance(conf2);
             job2.setJarByClass(SiteCountJob.class);
-            job2.setJobName("Word Invert");
+            job2.setJobName("Unique Site Condense");
 
-            FileInputFormat.setInputPaths(job2, new Path(args[1] + "/temp"));
-            FileOutputFormat.setOutputPath(job2, new Path(args[1] + "/final"));
+            FileInputFormat.setInputPaths(job2, new Path(args[2] + "/temp"));
+            FileOutputFormat.setOutputPath(job2, new Path(args[2] + "/final"));
 
             job2.setMapperClass(SiteMapperTwo.class);
             job2.setCombinerClass(SiteReducerTwo.class);

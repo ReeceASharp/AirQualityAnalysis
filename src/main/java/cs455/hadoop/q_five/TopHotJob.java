@@ -18,7 +18,7 @@ public class TopHotJob {
         try {
             Configuration conf = new Configuration();
             // Give the MapRed job a name. You'll see this name in the Yarn webapp.
-            Job job = Job.getInstance(conf, "Time of Day SO2 Comparison");
+            Job job = Job.getInstance(conf, "Top Hottest Summer Dates");
             // Current class.
             job.setJarByClass(TopHotJob.class);
             // Mapper

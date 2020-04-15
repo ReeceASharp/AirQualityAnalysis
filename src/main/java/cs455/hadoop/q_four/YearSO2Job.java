@@ -1,8 +1,5 @@
 package cs455.hadoop.q_four;
 
-import cs455.hadoop.q_three.DaySO2Job;
-import cs455.hadoop.q_three.DaySO2Mapper;
-import cs455.hadoop.q_three.DaySO2Reducer;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.DoubleWritable;
