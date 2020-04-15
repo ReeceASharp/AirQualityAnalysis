@@ -1,8 +1,8 @@
 package cs455.hadoop.q_one;
 
 import cs455.hadoop.util.IntComparator;
-import cs455.hadoop.util.SortMapper;
-import cs455.hadoop.util.SortReducer;
+import cs455.hadoop.util.IntSortMapper;
+import cs455.hadoop.util.IntSortReducer;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
@@ -99,6 +99,7 @@ public class SiteCountJob {
             //*********************
             //  THIRD JOB
             //*********************
+            //sorts in descending order of # of sites
 
             Configuration conf3 = new Configuration();
 
@@ -109,9 +110,9 @@ public class SiteCountJob {
             FileInputFormat.setInputPaths(job3, new Path(args[2] + "/unsorted_final"));
             FileOutputFormat.setOutputPath(job3, new Path(args[2] + "/final"));
 
-            job3.setMapperClass(SortMapper.class);
-            job3.setCombinerClass(SortReducer.class);
-            job3.setReducerClass(SortReducer.class);
+            job3.setMapperClass(IntSortMapper.class);
+            job3.setCombinerClass(IntSortReducer.class);
+            job3.setReducerClass(IntSortReducer.class);
 
             job3.setMapOutputKeyClass(IntWritable.class);
             job3.setMapOutputValueClass(Text.class);
@@ -136,9 +137,10 @@ public class SiteCountJob {
             Thread jobControlThread = new Thread(jobControl);
             jobControlThread.start();
 
+
+            // Block until the jobs is completed.
             job1.waitForCompletion(true);
             job2.waitForCompletion(true);
-            // Block until the job is completed.
             System.exit(job3.waitForCompletion(true) ? 0 : 1);
         } catch (IOException e) {
             System.err.println(e.getMessage());

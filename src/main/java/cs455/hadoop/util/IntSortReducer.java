@@ -7,7 +7,7 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 
 
-public class SortReducer extends Reducer<IntWritable, Text, IntWritable, Text> {
+public class IntSortReducer extends Reducer<IntWritable, Text, IntWritable, Text> {
 
     Text word = new Text();
 
