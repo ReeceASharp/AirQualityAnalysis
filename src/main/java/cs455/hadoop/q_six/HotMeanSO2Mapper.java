@@ -15,16 +15,16 @@ public class HotMeanSO2Mapper extends Mapper<LongWritable, Text, Text, DoubleWri
         /*
         Top Average Temperatures
         **************************
-        Arizona	85.23620301755703
-        Texas	83.1956953445332
-        Nevada	82.93571513091376
-        Mississippi	81.71553120756653
-        Florida	81.11059967866603
-        Louisiana	81.10992415770541
-        Arkansas	80.96621147874862
-        Oklahoma	80.16672938214376
-        New Mexico	79.81845587787511
-        South Carolina	78.8517002869028
+        85.23620301755703	Arizona
+        83.1956953445332	Texas
+        82.9357151309137	Nevada
+        81.71553120756649	Mississippi
+        81.11059967866603	Florida
+        81.10992415770546	Louisiana
+        80.96621147874862	Arkansas
+        80.16672938214398	Oklahoma
+        79.81845587787511	New Mexico
+        78.85170028690288	South Carolina
         **************************
          */
 
