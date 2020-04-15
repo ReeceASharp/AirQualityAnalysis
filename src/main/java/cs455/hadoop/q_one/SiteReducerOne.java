@@ -11,9 +11,10 @@ import java.io.IOException;
  * Sums up individual counts per given word. Emits <word, total count> pairs.
  */
 public class SiteReducerOne extends Reducer<Text, IntWritable, Text, IntWritable> {
+
     @Override
     protected void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
-        //System.out.println("REDUCER ONE");
+        //System.out.println("SITE REDUCER 1");
         int count = 0;
         // calculate the total count
         for(IntWritable val : values){
