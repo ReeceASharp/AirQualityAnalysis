@@ -1,5 +1,6 @@
 package cs455.hadoop.q_five;
 
+import cs455.hadoop.util.IntComparator;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.DoubleWritable;
@@ -36,6 +37,8 @@ public class TopHotJob {
             FileInputFormat.addInputPath(job, new Path(args[0]));
             // path to output in HDFS
             FileOutputFormat.setOutputPath(job, new Path(args[1]));
+
+            job.setSortComparatorClass(IntComparator.class);
 
             // Block until the job is completed.
             System.exit(job.waitForCompletion(true) ? 0 : 1);

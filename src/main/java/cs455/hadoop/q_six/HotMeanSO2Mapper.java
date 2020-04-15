@@ -52,7 +52,7 @@ public class HotMeanSO2Mapper extends Mapper<LongWritable, Text, Text, DoubleWri
             }
 
         } catch (NumberFormatException ignored) {
-            System.out.println("FOUND EXCEPTION: " + splitLine[12]);
+            //System.out.println("FOUND EXCEPTION: " + splitLine[12]);
             //System.out.println("IGNORING: " + splitLine[13] + ", " + splitLine[0]);
         }
 

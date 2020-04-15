@@ -9,7 +9,7 @@ import java.io.IOException;
 public class HotMeanSO2Reducer extends Reducer<Text, DoubleWritable,Text, DoubleWritable > {
     public void reduce(Text key,  Iterable<DoubleWritable> values, Context context) throws IOException,                                                       InterruptedException
     {
-        System.out.printf("REDUCING: text: %s %n", key);
+        //System.out.printf("REDUCING: text: %s %n", key);
         //initial values
         double totalCO2 = 0;
         int count = 0;

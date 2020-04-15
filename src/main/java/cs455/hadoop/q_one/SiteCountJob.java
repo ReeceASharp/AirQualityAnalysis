@@ -1,5 +1,8 @@
 package cs455.hadoop.q_one;
 
+import cs455.hadoop.util.IntComparator;
+import cs455.hadoop.util.SortMapper;
+import cs455.hadoop.util.SortReducer;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
@@ -26,7 +29,6 @@ import java.io.IOException;
 public class SiteCountJob {
     public static void main(String[] args) {
         try {
-            //System.out.println("STARTING JOB");
             // create JobControl to daisychain jobs
             JobControl jobControl = new JobControl("jobChain");
 
@@ -76,7 +78,7 @@ public class SiteCountJob {
             job2.setJobName("Unique Site Condense");
 
             FileInputFormat.setInputPaths(job2, new Path(args[2] + "/temp"));
-            FileOutputFormat.setOutputPath(job2, new Path(args[2] + "/final"));
+            FileOutputFormat.setOutputPath(job2, new Path(args[2] + "/unsorted_final"));
 
             job2.setMapperClass(SiteMapperTwo.class);
             job2.setCombinerClass(SiteReducerTwo.class);
@@ -94,13 +96,50 @@ public class SiteCountJob {
             // add the job to the job control
             jobControl.addJob(controlledJob2);
 
+            //*********************
+            //  THIRD JOB
+            //*********************
+
+            Configuration conf3 = new Configuration();
+
+            Job job3 = Job.getInstance(conf3);
+            job3.setJarByClass(SiteCountJob.class);
+            job3.setJobName("State Site Sort");
+
+            FileInputFormat.setInputPaths(job3, new Path(args[2] + "/unsorted_final"));
+            FileOutputFormat.setOutputPath(job3, new Path(args[2] + "/final"));
+
+            job3.setMapperClass(SortMapper.class);
+            job3.setCombinerClass(SortReducer.class);
+            job3.setReducerClass(SortReducer.class);
+
+            job3.setMapOutputKeyClass(IntWritable.class);
+            job3.setMapOutputValueClass(Text.class);
+
+            job3.setOutputKeyClass(IntWritable.class);
+            job3.setOutputValueClass(Text.class);
+            job3.setInputFormatClass(KeyValueTextInputFormat.class);
+            job3.setSortComparatorClass(IntComparator.class);
+
+            ControlledJob controlledJob3 = new ControlledJob(conf3);
+            controlledJob2.setJob(job3);
+
+            // make job3 dependent on job2, will only run when job2 is done
+            controlledJob3.addDependingJob(controlledJob2);
+            // add the job to the job control
+            jobControl.addJob(controlledJob3);
+
+            //*********************
+            //  JOB-CHAIN START
+            //*********************
 
             Thread jobControlThread = new Thread(jobControl);
             jobControlThread.start();
 
             job1.waitForCompletion(true);
+            job2.waitForCompletion(true);
             // Block until the job is completed.
-            System.exit(job2.waitForCompletion(true) ? 0 : 1);
+            System.exit(job3.waitForCompletion(true) ? 0 : 1);
         } catch (IOException e) {
             System.err.println(e.getMessage());
         } catch (InterruptedException e) {

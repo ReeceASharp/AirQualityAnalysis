@@ -15,12 +15,12 @@ public class YearSO2Mapper extends Mapper<LongWritable, Text, Text, DoubleWritab
             String year = splitLine[11].substring(0, 4);
             double quality = Double.parseDouble(splitLine[13]);
 
-            System.out.printf("Year: %s, quality: %f%n", year, quality);
+            //System.out.printf("Year: %s, quality: %f%n", year, quality);
 
             context.write(new Text(year), new DoubleWritable(quality));
 
         } catch (NumberFormatException ignored) {
-            System.out.println("FOUND EXCEPTION: " + splitLine[12]);
+            //System.out.println("FOUND EXCEPTION: " + splitLine[12]);
             //System.out.println("IGNORING: " + splitLine[13] + ", " + splitLine[0]);
         }
     }

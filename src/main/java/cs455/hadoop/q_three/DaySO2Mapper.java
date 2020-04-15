@@ -23,10 +23,10 @@ public class DaySO2Mapper extends Mapper <LongWritable, Text, Text, DoubleWritab
                 context.write(new Text(hour), new DoubleWritable(quality));
             }
             else {
-                System.out.println("NOT");
+                //System.out.println("NOT");
             }
         } catch (NumberFormatException ignored) {
-            System.out.println("FOUND EXCEPTION: " + splitLine[12]);
+            //System.out.println("FOUND EXCEPTION: " + splitLine[12]);
             //System.out.println("IGNORING: " + splitLine[13] + ", " + splitLine[0]);
         }
     }
