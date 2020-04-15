@@ -1,4 +1,4 @@
-package cs455.hadoop.q_five;
+package cs455.hadoop.q_six;
 
 import org.apache.hadoop.io.DoubleWritable;
 import org.apache.hadoop.io.Text;
@@ -6,7 +6,7 @@ import org.apache.hadoop.mapreduce.Reducer;
 
 import java.io.IOException;
 
-public class TopHotReducer extends Reducer<Text, DoubleWritable,Text, DoubleWritable > {
+public class HotMeanSO2Reducer extends Reducer<Text, DoubleWritable,Text, DoubleWritable > {
     public void reduce(Text key,  Iterable<DoubleWritable> values, Context context) throws IOException,                                                       InterruptedException
     {
         System.out.printf("REDUCING: text: %s %n", key);

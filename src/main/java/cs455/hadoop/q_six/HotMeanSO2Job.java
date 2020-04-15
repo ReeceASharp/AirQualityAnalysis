@@ -1,4 +1,4 @@
-package cs455.hadoop.q_five;
+package cs455.hadoop.q_six;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
@@ -10,20 +10,20 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 import java.io.IOException;
 
-public class TopHotJob {
+public class HotMeanSO2Job {
     public static void main(String[] args) {
         try {
             Configuration conf = new Configuration();
             // Give the MapRed job a name. You'll see this name in the Yarn webapp.
-            Job job = Job.getInstance(conf, "Hottest Summer States");
+            Job job = Job.getInstance(conf, "Hottest Summer States CO2 Data");
             // Current class.
-            job.setJarByClass(TopHotJob.class);
+            job.setJarByClass(HotMeanSO2Job.class);
             // Mapper
-            job.setMapperClass(TopHotMapper.class);
+            job.setMapperClass(HotMeanSO2Mapper.class);
             // Combiner. We use the reducer as the combiner in this case.
             //job.setCombinerClass(EWReducerOne.class);
             // Reducer
-            job.setReducerClass(TopHotReducer.class);
+            job.setReducerClass(HotMeanSO2Reducer.class);
             // Outputs from the Mapper.
             job.setMapOutputKeyClass(Text.class);
             job.setMapOutputValueClass(DoubleWritable.class);

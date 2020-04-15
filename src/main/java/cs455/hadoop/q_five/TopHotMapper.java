@@ -30,15 +30,15 @@ public class TopHotMapper extends Mapper<LongWritable, Text, Text, DoubleWritabl
             }
 
             if (hotMonth) {
-                System.out.printf("O HOT | State: %s, Month: %s %n", splitLine[21], dateValues[1]);
+                //System.out.printf("O HOT | State: %s, Month: %s %n", splitLine[21], dateValues[1]);
                 context.write(new Text(splitLine[21]), new DoubleWritable(temperature));
 
             } else {
-                System.out.printf("X not hot | Year: %s, quality: %f%n", splitLine[21], temperature);
+                //System.out.printf("X not hot | Year: %s, quality: %f%n", splitLine[21], temperature);
             }
 
         } catch (NumberFormatException ignored) {
-            System.out.println("FOUND EXCEPTION: " + splitLine[12]);
+            //System.out.println("FOUND EXCEPTION: " + splitLine[12]);
             //System.out.println("IGNORING: " + splitLine[13] + ", " + splitLine[0]);
         } catch (Exception e) {
             e.printStackTrace();
