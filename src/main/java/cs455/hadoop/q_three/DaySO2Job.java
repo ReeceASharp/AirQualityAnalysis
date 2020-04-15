@@ -20,8 +20,6 @@ public class DaySO2Job {
             job.setJarByClass(DaySO2Job.class);
             // Mapper
             job.setMapperClass(DaySO2Mapper.class);
-            // Combiner. We use the reducer as the combiner in this case.
-            //job.setCombinerClass(EWReducerOne.class);
             // Reducer
             job.setReducerClass(DaySO2Reducer.class);
             // Outputs from the Mapper.

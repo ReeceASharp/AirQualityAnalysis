@@ -6,8 +6,9 @@ import org.apache.hadoop.mapreduce.Mapper;
 
 import java.io.IOException;
 
+//flips values to keys and vice versa to take advantage of MapReduce's comparator sorting
+//that occurs between map and reduce
 public class DoubleSortMapper extends Mapper<Text, Text, DoubleWritable, Text> {
-
     @Override
     public void map(Text key, Text value, Context context) throws IOException, InterruptedException {
         try {

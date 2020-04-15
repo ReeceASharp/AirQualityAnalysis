@@ -6,6 +6,8 @@ import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
+//flips values to keys and vice versa to take advantage of MapReduce's comparator sorting
+//that occurs between map and reduce
 public class IntSortMapper extends Mapper< Text, Text, IntWritable, Text> {
 
     @Override

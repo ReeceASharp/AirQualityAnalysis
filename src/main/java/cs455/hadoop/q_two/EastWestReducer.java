@@ -16,6 +16,7 @@ public class EastWestReducer extends Reducer<Text, DoubleWritable,Text, DoubleWr
 
         //add up all of the recorded values for EAST/WEST, then average it out
         //unfortunately, this only reduces twice, which could be a ton of data
+        //to pass between
         for (DoubleWritable value : values)
         {
             totalCO2 += value.get();
