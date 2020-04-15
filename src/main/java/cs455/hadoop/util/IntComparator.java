@@ -4,6 +4,8 @@ import java.nio.ByteBuffer;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.WritableComparator;
 
+//used to reorder the output data values in the form of int from other jobs into descending order
+//used by Q1
 public class IntComparator extends WritableComparator {
 
     public IntComparator() {

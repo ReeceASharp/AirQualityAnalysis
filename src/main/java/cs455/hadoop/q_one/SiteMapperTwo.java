@@ -14,9 +14,8 @@ public class SiteMapperTwo extends Mapper<Text, Text, Text, IntWritable> {
     @Override
     protected void map(Text key, Text value, Context context) throws IOException, InterruptedException {
         try {
-            //System.out.printf("SITE MAPPER 2 key='%s', value='%s'%n", key.toString(), value.toString());
-            //get string, and convert to array, we know the elements that we care about
             //System.out.printf("MAPPER_TWO: key: %s, value: %s%n", key.toString(), value.toString());
+            //vals is in the form of StateStr, site code, county code
             String[] vals = key.toString().split(",");
 
             //Key = State, value = unique site

@@ -20,9 +20,7 @@ public class EWSO2Job {
             // Current class.
             job.setJarByClass(EWSO2Job.class);
             // Mapper
-            job.setMapperClass(EestWestMapper.class);
-            // Combiner. We use the reducer as the combiner in this case.
-            //job.setCombinerClass(EWReducerOne.class);
+            job.setMapperClass(EastWestMapper.class);
             // Reducer
             job.setReducerClass(EastWestReducer.class);
             // Outputs from the Mapper.

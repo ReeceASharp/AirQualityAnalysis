@@ -30,8 +30,6 @@ public class HotMeanSO2Job {
             job.setJarByClass(HotMeanSO2Job.class);
             // Mapper
             job.setMapperClass(HotMeanSO2Mapper.class);
-            // Combiner. We use the reducer as the combiner in this case.
-            //job.setCombinerClass(EWReducerOne.class);
             // Reducer
             job.setReducerClass(HotMeanSO2Reducer.class);
             // Outputs from the Mapper.

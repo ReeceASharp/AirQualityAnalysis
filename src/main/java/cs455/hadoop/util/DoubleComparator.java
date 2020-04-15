@@ -5,6 +5,8 @@ import java.nio.ByteBuffer;
 import org.apache.hadoop.io.DoubleWritable;
 import org.apache.hadoop.io.WritableComparator;
 
+//used to reorder the output data values in the form of double from other jobs into descending order
+//used by Q5, Q6
 public class DoubleComparator extends WritableComparator {
 
     public DoubleComparator() {

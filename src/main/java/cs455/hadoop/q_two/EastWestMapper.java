@@ -7,7 +7,7 @@ import org.apache.hadoop.mapreduce.Mapper;
 
 import java.io.IOException;
 
-public class EestWestMapper extends Mapper <LongWritable, Text, Text, DoubleWritable> {
+public class EastWestMapper extends Mapper <LongWritable, Text, Text, DoubleWritable> {
     public void map(LongWritable key, Text value, Context context) throws IOException,  InterruptedException {
         //Data was obtained from an epa states_and_countries.csv sheet obtained from their website
         //https://aqs.epa.gov/aqsweb/documents/codetables/states_and_counties.html
@@ -26,7 +26,7 @@ public class EestWestMapper extends Mapper <LongWritable, Text, Text, DoubleWrit
                 //WEST COAST
                 case 6:     //CA
                 case 41:    //OR
-                case 52:    //WA
+                case 53:    //WA
                 case 2:     //AK
                     context.write(new Text("WEST"),new DoubleWritable(quality));
                     break;
@@ -37,6 +37,7 @@ public class EestWestMapper extends Mapper <LongWritable, Text, Text, DoubleWrit
                 case 44:    //RI
                 case 9:     //CT
                 case 36:    //NY
+                case 34:    //NJ
                 case 10:    //DE
                 case 24:    //MD
                 case 51:    //VA

@@ -6,7 +6,8 @@ import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 
-
+//just spits out the data as is (theoretically not even needed, could be specified in the
+//driver function
 public class IntSortReducer extends Reducer<IntWritable, Text, IntWritable, Text> {
 
     Text word = new Text();
