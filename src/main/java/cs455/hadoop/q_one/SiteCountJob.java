@@ -12,6 +12,7 @@ import org.apache.hadoop.mapreduce.lib.jobcontrol.JobControl;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 import java.io.IOException;
+
 /*
     /s/indianapolis/a/nobackup/cs455/chipmunk (DFS location)
     /s/indianapolis/a/tmp/chipmunk/  (LOG LOCATION)
